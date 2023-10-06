@@ -23,9 +23,12 @@ public class Grumpkin : MonoBehaviour
     private enum GrumpkinState
     {
         follow,
-        attack,
-        jump,
-        shoot
+        attack, //very small dash in the direction of the player
+        jump, // up and down ground slam which does some aoe damage 
+        shoot // small charge and shoot a bullet in players direction 
+
+            //start in follow and if player gets close enough do either a dash or a jump attack randomly
+            // if player has not come close 
     }
 
     private GrumpkinState bossState = GrumpkinState.follow;
@@ -71,4 +74,8 @@ public class Grumpkin : MonoBehaviour
         this.transform.Translate((playerTransform.position - this.transform.position).normalized * speed * Time.deltaTime);
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        
+    }
 }
