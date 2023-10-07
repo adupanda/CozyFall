@@ -20,7 +20,7 @@ public class PlayerControllerTest : MonoBehaviour
 
     private Animator animator;
     private SpriteRenderer sr;
-    private enum CharacterState
+    public enum CharacterState
     {
         Idle,
         Moving,
@@ -28,7 +28,7 @@ public class PlayerControllerTest : MonoBehaviour
         Attacking
     }
 
-    private CharacterState currentState = CharacterState.Idle;
+    public CharacterState currentState = CharacterState.Idle;
 
     private void Awake()
     {

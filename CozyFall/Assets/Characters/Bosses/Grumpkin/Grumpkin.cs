@@ -22,6 +22,7 @@ public class Grumpkin : MonoBehaviour
     public Transform playerTransform;
 
     public GameObject bullet;
+    public GameObject expandingCircle;
 
 
     private int attackMeter = 0;
@@ -133,9 +134,13 @@ public class Grumpkin : MonoBehaviour
     private void Jump()
     {
         //call after telegraph frames
+
+        GameObject circleRef = Instantiate(expandingCircle, this.transform);
         //spawn ring at center (could use a circle collider and just increase it in size across the screen, if on trigger enter2d player is dashing dont do damge, otherwise do damge)
         //go back to follow
         
+
+        //create a gameobject with a circle collider which runs a coroutine with a while loop, in which the radius of the colider is increased per frame 
     }
 
     private void Shoot()
@@ -145,7 +150,7 @@ public class Grumpkin : MonoBehaviour
         //call after telegraph frames
         Vector3 playerDir = (playerTransform.position - this.transform.position).normalized;
 
-        GameObject bulletRef = Instantiate(bullet);
+        GameObject bulletRef = Instantiate(bullet, this.transform);
         bulletRef.GetComponent<Bullet>().shootDir = playerDir;
         bulletRef.GetComponent<Bullet>().Fire();
 
