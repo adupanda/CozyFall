@@ -29,6 +29,13 @@ public class Grumpkin : MonoBehaviour
     private Animator animator;
     private SpriteRenderer sr;
 
+    private AudioSource audioSource;
+    public AudioClip dashSound; //done
+    public AudioClip shootSound; //done
+    public AudioClip jumpUp; //done
+    public AudioClip jumpDown; //done
+   
+
     private enum GrumpkinState
     {
         follow,
@@ -44,6 +51,7 @@ public class Grumpkin : MonoBehaviour
 
     private void Awake()
     {
+        audioSource = GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
@@ -89,7 +97,7 @@ public class Grumpkin : MonoBehaviour
         HealthComponent playerController = collision.gameObject.GetComponent<HealthComponent>();
         if (playerController != null)
         {
-            playerController.TakeDamage(1);
+            
             if (bossState == GrumpkinState.follow)
             {
                 if (attackMeter == 0 || attackMeter == 1)
@@ -97,6 +105,7 @@ public class Grumpkin : MonoBehaviour
                     rb.velocity = Vector3.zero;
                     bossState = GrumpkinState.attack;
                     animator.SetTrigger("dash");
+                    audioSource.clip = dashSound; audioSource.Play();
                     attackMeter += 1;
                 }
                 else
@@ -104,6 +113,8 @@ public class Grumpkin : MonoBehaviour
                     rb.velocity = Vector3.zero;
                     bossState = GrumpkinState.jump;
                     animator.SetTrigger("jump");
+                    audioSource.clip = jumpUp;
+                    audioSource.Play();
                     attackMeter = 0;
                 }
             }
@@ -117,6 +128,7 @@ public class Grumpkin : MonoBehaviour
         //call this after telegraph frames
 
         Vector3 playerDir = (playerTransform.position - this.transform.position).normalized;
+        
         StartCoroutine(Dash(playerDir));
 
         rb.velocity = Vector3.zero;
@@ -147,7 +159,8 @@ public class Grumpkin : MonoBehaviour
     public void Jump()
     {
         //call after telegraph frames
-
+        audioSource.clip = jumpDown;
+        audioSource.Play();
         GameObject circleRef = Instantiate(expandingCircle, this.transform);
         //spawn ring at center (could use a circle collider and just increase it in size across the screen, if on trigger enter2d player is dashing dont do damge, otherwise do damge)
         //go back to follow
@@ -163,7 +176,7 @@ public class Grumpkin : MonoBehaviour
 
         //call after telegraph frames
         Vector3 playerDir = (playerTransform.position - this.transform.position).normalized;
-        
+        audioSource.clip = shootSound; audioSource.Play();
         GameObject bulletRef = Instantiate(bullet, this.transform);
         bulletRef.GetComponent<Bullet>().shootDir = playerDir;
         bulletRef.GetComponent<Bullet>().Fire();
