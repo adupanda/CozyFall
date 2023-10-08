@@ -22,9 +22,13 @@ public class LaserBehaviour : StateMachineBehaviour
 
     public float laserFullyChargedTimer;
 
+    public AudioClip laser;
+
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         playerPosition = animator.GetComponentInParent<Jocko>().player.transform.position;
+
+        AudioSource audioSource = animator.GetComponent<AudioSource>(); 
 
         if (playerPosition.x < animator.transform.position.x)
         {
@@ -39,8 +43,9 @@ public class LaserBehaviour : StateMachineBehaviour
         lineRenderer.SetPosition(1, playerPosition+(playerPosition - animator.transform.position)*100);
         lineRenderer.startWidth = 0.2f;
         lineRenderer.endWidth = 0.2f;
-        
 
+        audioSource.clip = laser;
+        audioSource.Play(1);
         
     }
      

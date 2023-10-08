@@ -15,6 +15,7 @@ MonoBehaviour:
   laserDamageTimer: 0
   lineColor: {r: 0.8207547, g: 0.020647852, b: 0.80506617, a: 0}
   laserFullyChargedTimer: 2
+  laser: {fileID: 8300000, guid: 0e20f851886d0c34e8218d6c4e93f628, type: 3}
 --- !u!1101 &-5464281626862510761
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
