@@ -40,7 +40,7 @@ public class MoveAroundBehaviour : StateMachineBehaviour
     
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        switchToLaserTimer = 5f;
+        switchToLaserTimer = 2.5f;
         animator.ResetTrigger("ShootLaser");
     }
 

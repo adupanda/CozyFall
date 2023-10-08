@@ -18,11 +18,7 @@ public class WispMovement : MonoBehaviour
 
     public float oscillationAmplitude;
 
-    void Start()
-    {
-       GetComponent<SpriteRenderer>().enabled = false;
-       GetComponent<CircleCollider2D>().enabled = false;
-    }
+    
 
     
     void Update()

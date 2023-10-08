@@ -191,8 +191,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dfe0f53b5d521e4b9da102ee5ac0de9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
-  switchToLaserTimer: 0
+  speed: 3
+  switchToLaserTimer: 2
 --- !u!1102 &5011043430553272131
 AnimatorState:
   serializedVersion: 6

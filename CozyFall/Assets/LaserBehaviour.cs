@@ -36,7 +36,7 @@ public class LaserBehaviour : StateMachineBehaviour
         lineRenderer = animator.GetComponentInParent<LineRenderer>();
         lineRenderer.positionCount = 2;
         lineRenderer.SetPosition(0, animator.transform.position);
-        lineRenderer.SetPosition(1, playerPosition);
+        lineRenderer.SetPosition(1, playerPosition+(playerPosition - animator.transform.position)*100);
         lineRenderer.startWidth = 0.2f;
         lineRenderer.endWidth = 0.2f;
         
