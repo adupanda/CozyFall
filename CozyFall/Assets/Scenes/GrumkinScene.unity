@@ -123,12 +123,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!4 &199455713 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8063167107984084606, guid: 01598aa95550a8843bb2d76819915624, type: 3}
-  m_PrefabInstance: {fileID: 1630442212}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &365403865
+--- !u!1001 &578360062
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -139,18 +134,18 @@ PrefabInstance:
     - target: {fileID: 342137944242008783, guid: a5afb1b2426dd914e9edda193d6fa8a2, type: 3}
       propertyPath: playerTransform
       value: 
-      objectReference: {fileID: 199455713}
+      objectReference: {fileID: 1365814020}
     - target: {fileID: 1761723031357260767, guid: a5afb1b2426dd914e9edda193d6fa8a2, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1761723031357260767, guid: a5afb1b2426dd914e9edda193d6fa8a2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.9283967
+      value: 5.0959187
       objectReference: {fileID: 0}
     - target: {fileID: 1761723031357260767, guid: a5afb1b2426dd914e9edda193d6fa8a2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.681879
+      value: -2.939147
       objectReference: {fileID: 0}
     - target: {fileID: 1761723031357260767, guid: a5afb1b2426dd914e9edda193d6fa8a2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -298,7 +293,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 1cb0171a9c199894c837d20ae5968bbe, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.635
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -382,6 +377,11 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!4 &1365814020 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8063167107984084606, guid: 01598aa95550a8843bb2d76819915624, type: 3}
+  m_PrefabInstance: {fileID: 1630442212}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1630442212
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -390,13 +390,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 18589153137185220, guid: 01598aa95550a8843bb2d76819915624, type: 3}
+      propertyPath: attackCheckRadius
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3973510779584433727, guid: 01598aa95550a8843bb2d76819915624, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 8063167107984084606, guid: 01598aa95550a8843bb2d76819915624, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8063167107984084606, guid: 01598aa95550a8843bb2d76819915624, type: 3}
       propertyPath: m_LocalPosition.x

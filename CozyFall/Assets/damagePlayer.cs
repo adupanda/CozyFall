@@ -12,7 +12,7 @@ public class damagePlayer : MonoBehaviour
         if(playerController)
         {
             playerController.TakeDamage(1);
-            Debug.Log("damaged");
+            
         }
     }
 }

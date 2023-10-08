@@ -20,9 +20,10 @@ public class AttackCheck : MonoBehaviour
             
             if (hit.CompareTag("Enemy"))
             {
-                if(hitObjectsList.Contains(hit.gameObject))
+                if(!hitObjectsList.Contains(hit.gameObject))
                 {
                     hit.GetComponent<HealthComponent>().TakeDamage(Damage);
+                    Debug.Log("Damaged boss");
                     hitObjectsList.Add(hit.gameObject);
                 }
                 
