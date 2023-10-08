@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class Grumpkin : MonoBehaviour
 {
-    [SerializeField]
-    private float attackRadius;
+    
     [SerializeField]
     private int health;
     [SerializeField]
@@ -47,41 +46,30 @@ public class Grumpkin : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        //animator = GetComponent<Animator>();
-        //sr = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
+        sr = GetComponent<SpriteRenderer>();
     }
     private void Start()
     {
-        
+        StartCoroutine(ShootTimer());
     }
 
     private void Update()
     {
-        switch (bossState)
-        {
-            case GrumpkinState.follow:
-                
-                Follow();
-                break;
-
-            case GrumpkinState.attack:
-                
-
-                //animator.SetBool("IsMoving", true);
-                break;
-
-            case GrumpkinState.jump:
-                
-                
-                //animator.SetTrigger("Dash");
-                break;
-
-            case GrumpkinState.shoot:
-                // animator.SetTrigger("Attack");
-                break;
-        }
-
         
+        if(playerTransform.position.x < this.transform.position.x) 
+        { 
+            sr.flipX= true;
+        }
+        else
+        {
+            sr.flipX= false;
+        }
+        
+        if(bossState== GrumpkinState.follow) 
+        { 
+            Follow();
+        }
     }
 
 
@@ -97,18 +85,20 @@ public class Grumpkin : MonoBehaviour
             if (attackMeter == 0 || attackMeter == 1)
             {
                 bossState = GrumpkinState.attack;
+                animator.SetTrigger("dash");
                 attackMeter += 1;
             }
             else
             {
                 bossState = GrumpkinState.jump;
+                animator.SetTrigger("jump");
                 attackMeter = 0;
             }
         }
         
     }
 
-    private void Attack()
+    public void Attack()
     {
         //call this after telegraph frames
 
@@ -116,8 +106,9 @@ public class Grumpkin : MonoBehaviour
         StartCoroutine(Dash(playerDir));
 
         bossState = GrumpkinState.follow;
+        animator.SetTrigger("follow");
 
-        
+
     }
 
 
@@ -131,19 +122,20 @@ public class Grumpkin : MonoBehaviour
             yield return null;
         }
     }
-    private void Jump()
+    public void Jump()
     {
         //call after telegraph frames
 
         GameObject circleRef = Instantiate(expandingCircle, this.transform);
         //spawn ring at center (could use a circle collider and just increase it in size across the screen, if on trigger enter2d player is dashing dont do damge, otherwise do damge)
         //go back to follow
-        
 
+        bossState = GrumpkinState.follow;
+        animator.SetTrigger("follow");
         //create a gameobject with a circle collider which runs a coroutine with a while loop, in which the radius of the colider is increased per frame 
     }
 
-    private void Shoot()
+    public void Shoot()
     {
 
 
@@ -157,6 +149,7 @@ public class Grumpkin : MonoBehaviour
 
 
         bossState = GrumpkinState.follow;
+        animator.SetTrigger("follow");
 
         StartCoroutine(ShootTimer());
 
@@ -176,6 +169,7 @@ public class Grumpkin : MonoBehaviour
         if(bossState == GrumpkinState.follow) 
         {
             bossState = GrumpkinState.shoot;
+            animator.SetTrigger("spit");
         }
         else
         {
