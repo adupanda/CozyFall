@@ -2,21 +2,38 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class ExpandingCircle : MonoBehaviour
 {
-    public float duration = 4f;        // Duration 
-    public float maxRadius = 15f;      // The maximum radius 
-    private float currentRadius = 0f; // The initial radius.
+    public float duration = 4f;        
+    public float maxRadius = 15f;      
+    private float currentRadius = 0f; 
 
     private CircleCollider2D circleCollider;
 
-    private void Start()
+   
+
+    public LineRenderer lineRenderer;
+
+    private void Awake()
     {
         circleCollider = GetComponent<CircleCollider2D>();
         circleCollider.radius = currentRadius;
+
+        lineRenderer= GetComponent<LineRenderer>();
+        lineRenderer.startWidth = 0.2f;  
+        lineRenderer.endWidth = 0.2f;    
+        lineRenderer.material.color = Color.black;
+
+    }
+    private void Start()
+    {
+        
         
         StartCoroutine(IncreaseRadiusOverTime());
     }
+
+   
 
     private IEnumerator IncreaseRadiusOverTime()
     {
@@ -30,17 +47,34 @@ public class ExpandingCircle : MonoBehaviour
             
             circleCollider.radius = currentRadius;
 
-            
+            UpdateLineRenderer();
             timer += Time.deltaTime;
 
             yield return null;
         }
 
-        // The effect is complete, destroy the GameObject.
+        
         Destroy(gameObject);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void UpdateLineRenderer()
+    {
+        
+        int numPoints = 40;
+        lineRenderer.positionCount = numPoints +1;
+        Vector3 centerPosition = transform.position;
+        // Update the LineRenderer positions to form a circle.
+        for (int i = 0; i <= numPoints; i++)
+        {
+            float angle = i * 2 * Mathf.PI / numPoints;
+            float x = Mathf.Cos(angle) * currentRadius;
+            float y = Mathf.Sin(angle) * currentRadius;
+            Vector3 position = new Vector3(x,y, centerPosition.z);
+            lineRenderer.SetPosition(i, position);
+        }
+    }
+
+        private void OnTriggerEnter2D(Collider2D collision)
     {
         // Check if the colliding object has a PlayerControllerTest component.
          PlayerControllerTest playerController  = collision.gameObject.GetComponent<PlayerControllerTest>();

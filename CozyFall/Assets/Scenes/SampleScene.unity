@@ -348,8 +348,8 @@ MonoBehaviour:
   dashTimer: 2
   shootTimer: 10
   playerTransform: {fileID: 6940565243325387217}
-  bullet: {fileID: 0}
-  expandingCircle: {fileID: 0}
+  bullet: {fileID: 896823959741048698, guid: 79fbd56bd8592614286fa3fc1074d521, type: 3}
+  expandingCircle: {fileID: 3764799271878695044, guid: 98463f349b983594f8948bd5f24e24c2, type: 3}
 --- !u!58 &624376081
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -464,11 +464,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5204628800486824466, guid: 98463f349b983594f8948bd5f24e24c2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.5747619
+      value: 5.63
       objectReference: {fileID: 0}
     - target: {fileID: 5204628800486824466, guid: 98463f349b983594f8948bd5f24e24c2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.19620375
+      value: -3.11
       objectReference: {fileID: 0}
     - target: {fileID: 5204628800486824466, guid: 98463f349b983594f8948bd5f24e24c2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -502,7 +502,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6066368935486554261, guid: 98463f349b983594f8948bd5f24e24c2, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -525,11 +526,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8063167107984084606, guid: 01598aa95550a8843bb2d76819915624, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 4.34
       objectReference: {fileID: 0}
     - target: {fileID: 8063167107984084606, guid: 01598aa95550a8843bb2d76819915624, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1.51
       objectReference: {fileID: 0}
     - target: {fileID: 8063167107984084606, guid: 01598aa95550a8843bb2d76819915624, type: 3}
       propertyPath: m_LocalPosition.z
