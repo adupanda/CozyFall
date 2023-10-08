@@ -13,10 +13,10 @@ public class Grumpkin : MonoBehaviour
     private int dashSpeed;
 
     [SerializeField]
-    private float dashTimer = 2;
+    private float dashTimer = 0.2f;
 
     [SerializeField]
-    private float shootTimer = 10;
+    private float shootTimer = 5;
 
     public Transform playerTransform;
 
@@ -105,6 +105,7 @@ public class Grumpkin : MonoBehaviour
         Vector3 playerDir = (playerTransform.position - this.transform.position).normalized;
         StartCoroutine(Dash(playerDir));
 
+        rb.velocity = Vector3.zero;
         bossState = GrumpkinState.follow;
         animator.SetTrigger("follow");
 
@@ -114,13 +115,9 @@ public class Grumpkin : MonoBehaviour
 
     private IEnumerator Dash(Vector3 dir)
     {
-        while(dashTimer > 0)
-        {
-            this.transform.Translate(dir * dashSpeed * Time.deltaTime);
+        rb.AddForce(dir * dashSpeed * Time.deltaTime);
+        yield return new WaitForSeconds(dashTimer);
 
-            dashTimer -= Time.deltaTime;
-            yield return null;
-        }
     }
     public void Jump()
     {

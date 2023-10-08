@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerControllerTest : MonoBehaviour
@@ -104,14 +105,13 @@ public class PlayerControllerTest : MonoBehaviour
             }
 
 
-            if (moveDir.magnitude > 0)
-            {
-                currentState = CharacterState.Moving;
-            }
-            else
+            if (moveDir.magnitude < 0)
             {
                 currentState = CharacterState.Idle;
+                rb.velocity = Vector3.zero;
             }
+            
+            
         }
         
 
@@ -123,11 +123,7 @@ public class PlayerControllerTest : MonoBehaviour
         {
             rb.velocity = moveDir * speed * Time.deltaTime;
         }
-        else
-        {
-            // Reset velocity when not moving
-            rb.velocity = Vector2.zero;
-        }
+        
 
     }
 
@@ -138,21 +134,22 @@ public class PlayerControllerTest : MonoBehaviour
         GetComponent<HealthComponent>().isImmune = true;
 
         Vector3 dashDirection = moveDir.magnitude > 0 ? moveDir.normalized : lastKnownMoveDir.normalized;
-        
-        float localDashDuration = dashDuration;
-        while (localDashDuration > 0)
+
+        float startTime = Time.time;
+
+        // Calculate the target velocity vector.
+        Vector2 targetVelocity = dashDirection * dashSpeed;
+
+        // Continue applying the velocity for the specified duration.
+        while (Time.time < startTime + dashDuration)
         {
-
-            rb.AddForce(dashDirection * dashSpeed);
-            //transform.Translate(dashDirection * dashMagnitude);
-            localDashDuration -= Time.deltaTime;
-
+            rb.velocity = targetVelocity;
             yield return null;
         }
 
         rb.velocity = Vector2.zero;
         isDashing = false;
-        
+
         GetComponent<HealthComponent>().isImmune = false;
         currentState = CharacterState.Idle;
     }
