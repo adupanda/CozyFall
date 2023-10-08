@@ -9,11 +9,18 @@ public class WispMovement : MonoBehaviour
     public float distanceFromPivot;
 
     public float rotationSpeed;
-    
+
+    float ElapsedTime;
+
+    public float minimumDistanceFromPivot;
+
+    public float oscillationPeriod;
+
+    public float oscillationAmplitude;
+
     void Start()
     {
-        Vector2 WispDirection = (this.transform.position - pivot.transform.position).normalized;
-        this.transform.position = (Vector2)pivot.transform.position + WispDirection * distanceFromPivot;
+       
     }
 
     
@@ -24,6 +31,16 @@ public class WispMovement : MonoBehaviour
         transform.rotation = Quaternion.identity;
 
         
+        ElapsedTime += Time.deltaTime;
+
+        distanceFromPivot = minimumDistanceFromPivot + oscillationAmplitude* Mathf.Abs(Mathf.Sin(oscillationPeriod*ElapsedTime));
+
         
+
+
+        Vector2 WispDirection = (this.transform.position - pivot.transform.position).normalized;
+        this.transform.position = (Vector2)pivot.transform.position + WispDirection * distanceFromPivot;
+        
+
     }
 }

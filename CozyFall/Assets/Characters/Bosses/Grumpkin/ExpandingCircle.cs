@@ -69,7 +69,7 @@ public class ExpandingCircle : MonoBehaviour
             float angle = i * 2 * Mathf.PI / numPoints;
             float x = Mathf.Cos(angle) * currentRadius;
             float y = Mathf.Sin(angle) * currentRadius;
-            Vector3 position = new Vector3(x,y, centerPosition.z);
+            Vector3 position = new Vector3(centerPosition.x + x,centerPosition.y + y, 0);
             lineRenderer.SetPosition(i, position);
         }
     }
