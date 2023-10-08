@@ -20,7 +20,8 @@ public class WispMovement : MonoBehaviour
 
     void Start()
     {
-       
+       GetComponent<SpriteRenderer>().enabled = false;
+       GetComponent<CircleCollider2D>().enabled = false;
     }
 
     

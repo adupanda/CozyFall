@@ -10,6 +10,8 @@ public class MoveAroundBehaviour : StateMachineBehaviour
     int randomPoint;
     public float speed;
 
+    public float switchToLaserTimer; 
+
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         patrolPoints = GameObject.FindGameObjectsWithTag("patrolPoints");
@@ -27,12 +29,19 @@ public class MoveAroundBehaviour : StateMachineBehaviour
             randomPoint = Random.Range(0, patrolPoints.Length);
         }
 
+        switchToLaserTimer -= Time.deltaTime;
+        if(switchToLaserTimer <= 0) 
+        {
+            animator.SetTrigger("ShootLaser");
+            switchToLaserTimer = 0;
+        }
     }
 
     
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-
+        switchToLaserTimer = 5f;
+        animator.ResetTrigger("ShootLaser");
     }
 
     

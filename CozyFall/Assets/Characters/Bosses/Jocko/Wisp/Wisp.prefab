@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2773367937339968249}
   - component: {fileID: 2500432610834499124}
   - component: {fileID: 6735551405785918099}
+  - component: {fileID: 563370845358231596}
   - component: {fileID: 7131760415853842487}
   m_Layer: 0
   m_Name: Wisp
@@ -100,10 +101,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pivot: {fileID: 0}
   distanceFromPivot: 0
-  rotationSpeed: 0
+  rotationSpeed: 20
   minimumDistanceFromPivot: 1.5
   oscillationPeriod: 1
   oscillationAmplitude: 2
+--- !u!114 &563370845358231596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3456755147154585133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1c4b5da09d9717488e92400212fb8e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!58 &7131760415853842487
 CircleCollider2D:
   m_ObjectHideFlags: 0

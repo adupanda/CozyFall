@@ -135,20 +135,25 @@ public class PlayerControllerTest : MonoBehaviour
     {
         currentState = CharacterState.Dashing;
         isDashing = true;
+        GetComponent<HealthComponent>().isImmune = true;
 
         Vector3 dashDirection = moveDir.magnitude > 0 ? moveDir.normalized : lastKnownMoveDir.normalized;
-        float dashDistance = dashSpeed * dashDuration;
-
-        while (dashDistance > 0)
+        
+        float localDashDuration = dashDuration;
+        while (localDashDuration > 0)
         {
-            float dashMagnitude = Mathf.Min(dashSpeed * Time.deltaTime, dashDistance);
-            transform.Translate(dashDirection * dashMagnitude);
-            dashDistance -= dashMagnitude;
+
+            rb.AddForce(dashDirection * dashSpeed);
+            //transform.Translate(dashDirection * dashMagnitude);
+            localDashDuration -= Time.deltaTime;
 
             yield return null;
         }
 
+        rb.velocity = Vector2.zero;
         isDashing = false;
+        
+        GetComponent<HealthComponent>().isImmune = false;
         currentState = CharacterState.Idle;
     }
 
