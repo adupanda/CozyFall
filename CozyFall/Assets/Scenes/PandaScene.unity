@@ -1420,6 +1420,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1314928090216850826, guid: e8fce8918d5c0824196dda3b00ac46a3, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1314928090216850826, guid: e8fce8918d5c0824196dda3b00ac46a3, type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1314928090216850826, guid: e8fce8918d5c0824196dda3b00ac46a3, type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1314928090216850826, guid: e8fce8918d5c0824196dda3b00ac46a3, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: edb1c9c99bfeba44ab7a66ff5f516f11, type: 2}
+    - target: {fileID: 1314928090216850826, guid: e8fce8918d5c0824196dda3b00ac46a3, type: 3}
+      propertyPath: m_Parameters.numCapVertices
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1314928090216850826, guid: e8fce8918d5c0824196dda3b00ac46a3, type: 3}
+      propertyPath: m_Parameters.numCornerVertices
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5736247664523282531, guid: e8fce8918d5c0824196dda3b00ac46a3, type: 3}
       propertyPath: m_Name
       value: Boss

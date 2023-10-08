@@ -20,6 +20,8 @@ public class LaserBehaviour : StateMachineBehaviour
 
     public Color lineColor;
 
+    public float laserFullyChargedTimer;
+
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         playerPosition = animator.GetComponentInParent<Jocko>().player.transform.position;
@@ -37,7 +39,7 @@ public class LaserBehaviour : StateMachineBehaviour
         lineRenderer.SetPosition(1, playerPosition);
         lineRenderer.startWidth = 0.2f;
         lineRenderer.endWidth = 0.2f;
-        lineRenderer.SetColors(lineColor, lineColor);
+        
 
         
     }
@@ -46,7 +48,7 @@ public class LaserBehaviour : StateMachineBehaviour
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         
-        float newAlpha = Mathf.Lerp(0, 1, laserDamageTimer);
+        float newAlpha = Mathf.Lerp(0, 1, laserDamageTimer/laserFullyChargedTimer);
 
         
         Color newLineColor = new Color(lineColor.r, lineColor.g, lineColor.b, newAlpha);
@@ -55,7 +57,7 @@ public class LaserBehaviour : StateMachineBehaviour
         lineRenderer.material.color = newLineColor;
 
         laserDamageTimer += Time.deltaTime;
-        if(laserDamageTimer >= 2f)
+        if(laserDamageTimer >= laserFullyChargedTimer)
         {
             RaycastHit2D hit = Physics2D.Raycast(animator.transform.position, (playerPosition - animator.transform.position).normalized, 100f);
             if(hit.transform.gameObject.CompareTag("Player"))
@@ -72,6 +74,8 @@ public class LaserBehaviour : StateMachineBehaviour
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         laserDamageTimer = 0;
+        Color zeroAlphaColor = new Color(0, 0, 0, 0);
+        lineRenderer.material.color = zeroAlphaColor;
     }
 
 
