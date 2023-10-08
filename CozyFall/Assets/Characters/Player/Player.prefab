@@ -37,7 +37,7 @@ Transform:
   m_Children:
   - {fileID: 4602467501849406585}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &467505036626506020
 SpriteRenderer:
@@ -79,7 +79,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 75812f068e9c0a044a1ba447d6ea1458, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -218,7 +218,7 @@ MonoBehaviour:
   dashDirection: {x: 0, y: 0}
   lastMoveInput: {x: 0, y: 0}
   attackCheck: {fileID: 4602467501849406585}
-  attackCheckRadius: 0.51
+  attackCheckRadius: 1
 --- !u!114 &6625699235995350449
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -232,6 +232,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Damage: 2
+  hitObjectsList: []
 --- !u!1 &6238488399529676738
 GameObject:
   m_ObjectHideFlags: 0

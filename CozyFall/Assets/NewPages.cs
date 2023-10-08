@@ -2,23 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 
-public class Pages : MonoBehaviour
+public class NewPages : MonoBehaviour
 {
     [SerializeField]
     public Button nextButton;
     [SerializeField]
-    public Image[] images;
     
+    public GameObject[] images;
+
     private int currentPage = 0;
 
     public void ButtonClicked()
     {
-        if(currentPage < 5)
+        if (currentPage < 5)
         {
             currentPage++;
-            images[currentPage].SetEnabled(true);
+            images[currentPage].SetActive(true);
 
         }
         else
@@ -26,6 +27,5 @@ public class Pages : MonoBehaviour
             SceneManager.LoadScene("boss1");
         }
     }
-
 
 }

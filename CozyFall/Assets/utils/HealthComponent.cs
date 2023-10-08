@@ -72,8 +72,22 @@ public class HealthComponent : MonoBehaviour
     {
         if (currentHealth <= 0) 
         {
+            if(gameObject.CompareTag("Player"))
+            {
+                SceneManager.LoadScene("boss1");
+                
+                
+            }
+            else if(SceneManager.GetActiveScene().buildIndex == 1)
+            {
+                SceneManager.LoadScene("boss2");
+            }
+            else if (SceneManager.GetActiveScene().buildIndex == 2)
+            {
+                SceneManager.LoadScene("lastscene");
+            }
+                Destroy(gameObject);
             
-            Destroy(gameObject);
         }
     }
 
