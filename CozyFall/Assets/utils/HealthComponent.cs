@@ -73,7 +73,7 @@ public class HealthComponent : MonoBehaviour
         if (currentHealth <= 0) 
         {
             
-            currentHealth = maxHealth;
+            Destroy(gameObject);
         }
     }
 

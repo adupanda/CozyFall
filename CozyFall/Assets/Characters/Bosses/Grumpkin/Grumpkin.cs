@@ -5,8 +5,7 @@ using UnityEngine;
 public class Grumpkin : MonoBehaviour
 {
     
-    [SerializeField]
-    private int health;
+    
     [SerializeField]
     private int speed;
     [SerializeField]
@@ -75,26 +74,41 @@ public class Grumpkin : MonoBehaviour
 
     private void Follow()
     {
-        this.transform.Translate((playerTransform.position - this.transform.position).normalized * speed * Time.deltaTime);
+        // Calculate the direction from this object to the player
+        Vector2 directionToPlayer = (playerTransform.position - transform.position).normalized;
+
+        // Calculate the desired velocity
+        Vector2 desiredVelocity = directionToPlayer * speed;
+
+        // Apply the velocity to the Rigidbody2D
+        rb.velocity = desiredVelocity;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(bossState == GrumpkinState.follow)
+        HealthComponent playerController = collision.gameObject.GetComponent<HealthComponent>();
+        if (playerController != null)
         {
-            if (attackMeter == 0 || attackMeter == 1)
+            playerController.TakeDamage(1);
+            if (bossState == GrumpkinState.follow)
             {
-                bossState = GrumpkinState.attack;
-                animator.SetTrigger("dash");
-                attackMeter += 1;
-            }
-            else
-            {
-                bossState = GrumpkinState.jump;
-                animator.SetTrigger("jump");
-                attackMeter = 0;
+                if (attackMeter == 0 || attackMeter == 1)
+                {
+                    rb.velocity = Vector3.zero;
+                    bossState = GrumpkinState.attack;
+                    animator.SetTrigger("dash");
+                    attackMeter += 1;
+                }
+                else
+                {
+                    rb.velocity = Vector3.zero;
+                    bossState = GrumpkinState.jump;
+                    animator.SetTrigger("jump");
+                    attackMeter = 0;
+                }
             }
         }
+        
         
     }
 
@@ -115,8 +129,19 @@ public class Grumpkin : MonoBehaviour
 
     private IEnumerator Dash(Vector3 dir)
     {
-        rb.AddForce(dir * dashSpeed * Time.deltaTime);
-        yield return new WaitForSeconds(dashTimer);
+        float startTime = Time.time;
+
+        // Calculate the target velocity vector.
+        Vector2 targetVelocity = dir * dashSpeed ;
+
+        // Continue applying the velocity for the specified duration.
+        while (Time.time < startTime + dashTimer)
+        {
+            rb.velocity = targetVelocity;
+            yield return null;
+        }
+
+       rb.velocity = Vector3.zero;
 
     }
     public void Jump()
@@ -138,7 +163,7 @@ public class Grumpkin : MonoBehaviour
 
         //call after telegraph frames
         Vector3 playerDir = (playerTransform.position - this.transform.position).normalized;
-
+        
         GameObject bulletRef = Instantiate(bullet, this.transform);
         bulletRef.GetComponent<Bullet>().shootDir = playerDir;
         bulletRef.GetComponent<Bullet>().Fire();
@@ -166,6 +191,7 @@ public class Grumpkin : MonoBehaviour
         if(bossState == GrumpkinState.follow) 
         {
             bossState = GrumpkinState.shoot;
+            rb.velocity = Vector3.zero;
             animator.SetTrigger("spit");
         }
         else

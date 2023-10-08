@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 342137944242008783}
   - component: {fileID: 5230039020943471485}
   - component: {fileID: 8904622030952218731}
-  - component: {fileID: 3842964050007109447}
   - component: {fileID: 3364216744480799474}
+  - component: {fileID: 6364109492347267656}
   m_Layer: 0
   m_Name: Grumpkin
   m_TagString: Untagged
@@ -35,7 +35,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5808600926565862137
 SpriteRenderer:
@@ -103,8 +103,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 5
   speed: 2
-  dashSpeed: 200
-  dashTimer: 0.2
+  dashSpeed: 15
+  dashTimer: 0.4
   shootTimer: 7
   playerTransform: {fileID: 0}
   bullet: {fileID: 896823959741048698, guid: 79fbd56bd8592614286fa3fc1074d521, type: 3}
@@ -171,41 +171,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 3.5546262
---- !u!58 &3842964050007109447
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4731035774201835622}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.13351643, y: 0.13351631}
-  serializedVersion: 2
-  m_Radius: 1.3456036
 --- !u!95 &3364216744480799474
 Animator:
   serializedVersion: 5
@@ -227,3 +192,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &6364109492347267656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4731035774201835622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b9caa11b44ef4c49bb40be92f068c16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 10
+  currentHealth: 10
+  isImmune: 0
+  immunityDuration: 0

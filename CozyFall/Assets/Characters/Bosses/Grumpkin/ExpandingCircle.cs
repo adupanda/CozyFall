@@ -74,27 +74,20 @@ public class ExpandingCircle : MonoBehaviour
         }
     }
 
-        private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         // Check if the colliding object has a PlayerControllerTest component.
-         PlayerControllerTest playerController  = collision.gameObject.GetComponent<PlayerControllerTest>();
+         
+        HealthComponent component = collision.GetComponent<HealthComponent>();
 
-        if (playerController != null)
+        if (component != null)
         {
-            // Access the player's current state.
-            PlayerControllerTest.CharacterState playerState = playerController.currentState;
+            
 
-            // Check the player's state and perform actions accordingly.
-            if (playerState == PlayerControllerTest.CharacterState.Dashing)
-            {
-                // Player is in the "Dashing" state, so do something specific.
-                Debug.Log("Player is dodging.");
-            }
-            else
-            {
-                // Player is not in the "Dashing" state, so do something else.
-                Debug.Log("Player is not dodging.");
-            }
+           
+            
+            component.TakeDamage(1);
+            
         }
     }
 }

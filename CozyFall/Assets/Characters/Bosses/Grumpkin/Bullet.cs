@@ -30,7 +30,8 @@ public class Bullet : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            return;
+            HealthComponent component = collision.GetComponent<HealthComponent>();
+            component.TakeDamage(1);
         }
         Destroy(gameObject);
     }
